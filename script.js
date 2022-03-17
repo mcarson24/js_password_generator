@@ -1,11 +1,23 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-const generatePassword = length => {
-  const allowedCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+{[}]:;"<,>.?/\''.split('')
+const buildAllowedCharacters = () => {
+  let allowedCharacters = ''
+
+  do {
+    if (confirm('Include lowercase?')) allowedCharacters += 'abcdefghijklmnopqrstuvwxyz'
+    if (confirm('Include uppercase?')) allowedCharacters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    if (confirm('Include numeric characters?')) allowedCharacters += '0123456789'
+    if (confirm('Inlcude special characters?')) allowedCharacters += `!”#$%&'()*+,-./:;<=>?@[\]^_\`{|}~`
+  } while (!allowedCharacters.length)
+
+  return allowedCharacters
+}
+
+const generatePassword = (length, characters) => {
   let password = ''
   for (let i = 0; i < length; i++) {
-    password += allowedCharacters[Math.floor(Math.random() * allowedCharacters.length)]
+    password += characters[Math.floor(Math.random() * characters.length)]
   }
   return password
 }
@@ -14,8 +26,9 @@ const generatePassword = length => {
 function writePassword() {
   do {
     length = prompt('Length of password? (min of 8 | max of 128)')
-  } while (length < 8 ||length > 128)
-  var password = generatePassword(length);
+  } while (length < 8 || length > 128)
+  const characters = buildAllowedCharacters()
+  var password = generatePassword(length, characters.split(''));
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
