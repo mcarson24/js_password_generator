@@ -1,8 +1,10 @@
-# Javascript Password Generator
+# Javascript Password Generator`
 
 ## Description
 
 Simple application that allows users to generate random passwords based upon certain criteria which they’ve set.
+
+![Screenshot of completed password generator](./screenshot.png)
 
 ## Features
 
