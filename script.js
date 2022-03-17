@@ -1,10 +1,10 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-const generatePassword = () => {
+const generatePassword = length => {
   const allowedCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+{[}]:;"<,>.?/\''.split('')
   let password = ''
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < length; i++) {
     password += allowedCharacters[Math.floor(Math.random() * allowedCharacters.length)]
   }
   return password
@@ -12,7 +12,10 @@ const generatePassword = () => {
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  do {
+    length = prompt('Length of password? (min of 8 | max of 128)')
+  } while (length < 8 ||length > 128)
+  var password = generatePassword(length);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
