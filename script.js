@@ -1,5 +1,3 @@
-const generateBtn = document.querySelector("#generate");
-
 let desiredCharacterSet = []
 
 let characterSets = {
@@ -12,28 +10,14 @@ let characterSets = {
 const generatePassword = length => {
   let password = ''
   let allowedCharacters = ''
-  // The following conditionals make sure that at least one of each desired character is included
-  // in the created password string.
-  if (desiredCharacterSet.includes('uppercase')) {
-    length--
-    allowedCharacters += characterSets.uppercase
-    password += characterSets.uppercase[Math.floor(Math.random() * characterSets.uppercase.length)]
-  }
-  if (desiredCharacterSet.includes('lowercase')) {
-    length--
-    allowedCharacters += characterSets.lowercase
-    password += characterSets.lowercase[Math.floor(Math.random() * characterSets.lowercase.length)]
-  }
-  if (desiredCharacterSet.includes('numeric')) {
-    length--
-    allowedCharacters += characterSets.numeric
-    password += characterSets.numeric[Math.floor(Math.random() * characterSets.numeric.length)]
-  }
-  if (desiredCharacterSet.includes('special')) {
-    length--
-    allowedCharacters += characterSets.special
-    password += characterSets.special[Math.floor(Math.random() * characterSets.special.length)]
-  }
+  // Make sure that at least one of each desired character is included in the created password string.
+  Object.keys(characterSets).forEach(charSet => {
+    if (desiredCharacterSet.includes(charSet)) {
+      length--
+      allowedCharacters += characterSets[charSet]
+      password += characterSets[charSet][Math.floor(Math.random() * characterSets[charSet].length)]
+    }
+  })
   // Determine the remaining characters of the password
   for (let i = 0; i < length; i++) {
     password += allowedCharacters[Math.floor(Math.random() * allowedCharacters.length)]
@@ -65,4 +49,4 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+document.querySelector("#generate").addEventListener("click", writePassword);
