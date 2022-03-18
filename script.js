@@ -1,6 +1,6 @@
 let desiredCharacterSet = []
 
-let characterSets = {
+const characterSets = {
   uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
   lowercase: 'abcdefghijklmnopqrstuvwxyz',
   numeric: '0123456789',
