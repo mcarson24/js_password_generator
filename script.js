@@ -7,7 +7,7 @@ let characterSets = {
   special: `!”#$%&'()*+,-./:;<=>?@[\]^_\`{|}~`
 }
 
-const generatePassword = length => {
+const generatePassword = passwordLength => {
   let password = ''
   let allowedCharacters = ''
   // Make sure that at least one of each desired character is included in the created password string.
@@ -19,7 +19,7 @@ const generatePassword = length => {
     }
   })
   // Determine the remaining characters of the password
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < passwordLength; i++) {
     password += allowedCharacters[Math.floor(Math.random() * allowedCharacters.length)]
   }
   // Shuffle the password so that the first four characters aren't always the 'guaranteed' characters.
@@ -32,8 +32,8 @@ const writePassword = () => {
   // different character sets, after making a previous password.
   desiredCharacterSet = []
   do {
-    length = prompt('Length of password? (min of 8 | max of 128)')
-  } while (length < 8 || length > 128)
+    passwordLength = prompt('Length of password? (min of 8 | max of 128)')
+  } while (passwordLength < 8 || passwordLength > 128)
 
   // Determine what types of characters to include in the password.
   do {
@@ -42,7 +42,7 @@ const writePassword = () => {
     })
   } while (!desiredCharacterSet.length)
 
-  const password = generatePassword(length)
+  const password = generatePassword(passwordLength)
   const passwordText = document.querySelector("#password");
 
   passwordText.value = password;
