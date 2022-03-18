@@ -27,7 +27,7 @@ const generatePassword = length => {
 }
 
 // Write password to the #password input
-function writePassword() {
+const writePassword = () => {
   // Reset the desired character sets. In case the user wants to make a new password, with
   // different character sets, after making a previous password.
   desiredCharacterSet = []
