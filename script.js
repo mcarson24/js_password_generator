@@ -42,10 +42,7 @@ const writePassword = () => {
     })
   } while (!desiredCharacterSet.length)
 
-  const password = generatePassword(passwordLength)
-  const passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
+  document.querySelector("#password").value = generatePassword(passwordLength)
 }
 
 // Add event listener to generate button
