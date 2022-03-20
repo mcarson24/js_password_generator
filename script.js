@@ -13,7 +13,7 @@ const generatePassword = passwordLength => {
   // Make sure that at least one of each desired character is included in the created password string.
   Object.keys(characterSets).forEach(charSet => {
     if (desiredCharacterSet.includes(charSet)) {
-      length--
+      passwordLength--
       allowedCharacters += characterSets[charSet]
       password += characterSets[charSet][Math.floor(Math.random() * characterSets[charSet].length)]
     }
